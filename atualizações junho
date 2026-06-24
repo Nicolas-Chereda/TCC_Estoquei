@@ -1,8 +1,0 @@
-14/06 e 15/06
-Adicionado variáveis globais de estilização;
-Padronização do código por meio de variáveis globais de estilização;
-
-21/06 e 22/06
-Migração do projeto de JavaScript para TypeScript;
-Criado contexto de usuário com Context API do React para centralizar o gerenciamento dos dados do usuário e facilitar o compartilhamento de informações entre componentes da aplicação.
-Adicionado sistema de validação do formulário de login com Zod;
