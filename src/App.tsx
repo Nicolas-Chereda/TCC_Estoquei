@@ -1,12 +1,12 @@
-import Rotas  from "./routes/Rotas.tsx"
-import  { UsuarioProvider } from "./contexts/UsuarioContexto.tsx"
+import Rotas from "./routes/Rotas.tsx";
+import { UsuarioProvider } from "./contexts/UsuarioContexto.tsx";
 
- const App = () => {
-	return (
-		<UsuarioProvider>
-			<Rotas />
-		</UsuarioProvider>
-	)
-}
+const App = () => {
+    return (
+        <UsuarioProvider>
+            <Rotas />
+        </UsuarioProvider>
+    );
+};
 
 export default App;

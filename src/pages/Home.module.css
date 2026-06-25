@@ -56,10 +56,13 @@
     cursor: pointer;
 }
 
-
 .conteudo {
     height: 99.6vh;
-    background: linear-gradient(160deg,var(--cor-primaria-clara), var(--cor-primaria-base));
+    background: linear-gradient(
+        160deg,
+        var(--cor-primaria-clara),
+        var(--cor-primaria-base)
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +90,7 @@
     padding: 8px 10px;
     font-size: var(--tamanho-base1);
     font-weight: 400;
-    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid var(--cor-secundaria-escura);
 }
 
@@ -106,50 +109,49 @@
     height: 100%;
 }
 
-
 @keyframes flutuandoLapis {
-     0%{
+    0% {
         transform: translateY(0px);
     }
 
-    50%{
+    50% {
         transform: translateY(-10px) translateX(20px);
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
     }
 }
 
 @keyframes flutuandoTeclado {
-     0%{
+    0% {
         transform: translateY(0px);
     }
 
-    50%{
+    50% {
         transform: translateY(-10px) translateX(-20px);
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
     }
 }
 
 @keyframes flutuandoAgenda {
-     0%{
+    0% {
         transform: translateY(-10px);
     }
 
-    50%{
+    50% {
         transform: translateY(-0px);
     }
 
-    100%{
+    100% {
         transform: translateY(-10px);
     }
-} 
+}
 
-.imagem img.teclado{
+.imagem img.teclado {
     position: absolute;
     right: -4%;
     top: 30%;
@@ -157,7 +159,7 @@
     animation: flutuandoTeclado 5s infinite alternate;
 }
 
-.imagem img.lapis{
+.imagem img.lapis {
     position: absolute;
     top: 50%;
     right: 50%;
@@ -165,7 +167,7 @@
     animation: flutuandoLapis 5s infinite alternate;
 }
 
-.imagem img.agenda{
+.imagem img.agenda {
     position: absolute;
     top: 20%;
     right: 50%;
@@ -182,14 +184,14 @@
     align-items: center;
 }
 
-.sobreNos{
+.sobreNos {
     margin: 0 auto;
     width: 70%;
-    display: flex; 
+    display: flex;
     justify-content: center;
     gap: 50px;
     position: relative;
-} 
+}
 
 .cardSobreNos {
     flex: 50%;
@@ -209,10 +211,10 @@ img {
 }
 
 .textoSobreNos .titulo1 {
-   position: absolute;
-   left: 45%;
-   top: 10%;
-   font-size: var(--tamanho-titulo-grande);
+    position: absolute;
+    left: 45%;
+    top: 10%;
+    font-size: var(--tamanho-titulo-grande);
 }
 
 .textoSobreNos .titulo2 {
@@ -256,10 +258,14 @@ img {
 }
 
 .cardSolucao {
-    width: 300px;   
+    width: 300px;
     aspect-ratio: 1/1;
     border-radius: 8px;
-    background: linear-gradient(160deg,var(--cor-primaria-clara), var(--cor-primaria-base));
+    background: linear-gradient(
+        160deg,
+        var(--cor-primaria-clara),
+        var(--cor-primaria-base)
+    );
     display: flex;
     flex-direction: column;
     justify-content: space-around;

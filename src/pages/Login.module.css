@@ -1,7 +1,11 @@
 .container {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to right, var(--cor-fundo), var(--cor-secundaria-clara));
+    background: linear-gradient(
+        to right,
+        var(--cor-fundo),
+        var(--cor-secundaria-clara)
+    );
 }
 
 .blur {
@@ -18,7 +22,7 @@
     width: 60%;
     height: 80%;
     background: var(--cor-neutra-branco);
-   
+
     border-radius: 12px;
     overflow: hidden;
     display: flex;
@@ -36,7 +40,8 @@
     transform: translateX(0);
 }
 
-.painel h1, .painel p {
+.painel h1,
+.painel p {
     color: var(--cor-neutra-branco);
 }
 
@@ -44,23 +49,28 @@
     transform: translateX(-200%);
 }
 
-.splitLogin, .splitRegistro {
+.splitLogin,
+.splitRegistro {
     width: 100%;
-	height: 100%;
-	flex-shrink: 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 40px;
-	text-align: center;
-    background: linear-gradient(90deg, var(--cor-primaria-base),var(--cor-primaria-escura));
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    background: linear-gradient(
+        90deg,
+        var(--cor-primaria-base),
+        var(--cor-primaria-escura)
+    );
     gap: 30px;
-    transition:  0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
-
-.formLogin, .formRegistrar {
+.formLogin,
+.formRegistrar {
     width: 50%;
     height: 100%;
     display: flex;
@@ -70,7 +80,8 @@
     transition: 0.5s ease-in-out;
 }
 
-.login, .registrar {
+.login,
+.registrar {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -79,7 +90,8 @@
     padding: 40px;
 }
 
-.login  p, .registrar p{
+.login p,
+.registrar p {
     color: var(--cor-secundaria-base);
 }
 
@@ -104,15 +116,13 @@
     transition: 0.1s ease-in-out;
 }
 
-
 .campo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
-.campo p{
+.campo p {
     color: red;
     font-size: var(--tamanho-pequeno);
 }

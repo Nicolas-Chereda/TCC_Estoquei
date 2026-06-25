@@ -6,3 +6,8 @@ Padronização do código por meio de variáveis globais de estilização;
 Migração do projeto de JavaScript para TypeScript;
 Criado contexto de usuário com Context API do React para centralizar o gerenciamento dos dados do usuário e facilitar o compartilhamento de informações entre componentes da aplicação.
 Adicionado sistema de validação do formulário de login com Zod;
+
+24/06 e 25/06
+Criação do repósitório no Github;
+Adicionado projeto no repositório do Github;
+Adicionado layout para futuras páginas funcionais;
