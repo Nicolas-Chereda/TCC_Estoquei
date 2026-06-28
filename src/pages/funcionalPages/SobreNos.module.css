@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    padding: 2%;
+    background-color: var(--cor-fundo);
+}
+
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.sobre h1 {
+    font-size: var(--tamanho-titulo);
+}
+
+
+.sobre p {
+    color: var(--cor-secundaria-base);
+    font-size: var(--tamanho-base1);
+    max-width: 900px;
+}
+
+
+.equipe {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+.equipe h2 {
+    font-size: var(--tamanho-base2);
+}
+
+
+.imagemGrupo {
+    width: 500px;
+    height: 280px;
+    border: 1px solid var(--cor-secundaria-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nomes {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+}
+
+
+.nomes p {
+    font-size: var(--tamanho-base);
+    color: var(--cor-neutra-preto);
+}

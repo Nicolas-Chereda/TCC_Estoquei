@@ -5,35 +5,15 @@
     overflow-x: hidden;
 }
 
-/*.navbar {
+.navbar {
+    position: fixed;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-*/
 
-.logo {
-    position: fixed;
-    left: 5%;
-    top: 5%;
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
-.logo img {
-    width: 50px;
-}
-
-.logo h2 {
-    margin-top: 5%;
-    font-family: var(--fonte-logo);
-    font-size: var(--tamanho-logo);
-}
 
 .navbar button {
     position: fixed;
@@ -54,6 +34,27 @@
     background-color: var(--cor-secundaria-escura);
     transition: 0.3s;
     cursor: pointer;
+}
+
+.logo {
+    position: fixed;
+    left: 5%;
+    top: 5%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.logo h2 {
+    margin-top: 5%;
+    font-family: var(--fonte-logo);
+    font-size: var(--tamanho-titulo);
 }
 
 .conteudo {
@@ -80,6 +81,10 @@
 
 .texto p {
     margin-top: 30px;
+}
+
+.texto h1 {
+    font-size: var(--tamanho-titulo-grande);
 }
 
 .texto button.comecar {
@@ -214,14 +219,14 @@ img {
     position: absolute;
     left: 45%;
     top: 10%;
-    font-size: var(--tamanho-titulo-grande);
+    font-size: var(--tamanho-logo);
 }
 
 .textoSobreNos .titulo2 {
     position: absolute;
     left: 45%;
     top: 20%;
-    font-size: var(--tamanho-titulo-grande);
+    font-size: var(--tamanho-logo);
 }
 
 .textoSobreNos p {
@@ -249,6 +254,10 @@ img {
     display: flex;
     justify-content: center;
     margin-bottom: 2%;
+}
+
+.tituloSolucoes h1 {
+    font-size: var(--tamanho-titulo-grande);
 }
 
 .containerCardsSolucoes {
@@ -281,5 +290,5 @@ img {
 }
 
 .nomeSolucao .icone {
-    font-size: var(--tamanho-titulo);
+    font-size: var(--tamanho-titulo-grande);
 }

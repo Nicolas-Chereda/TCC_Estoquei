@@ -5,7 +5,7 @@
     --cor-primaria-base: #ff7b00;
     --cor-primaria-escura: #cc6300;
 
-    --cor-secundaria-clara: #dddbdb;
+    --cor-secundaria-clara: #dddbdd;
     --cor-secundaria-base: gray;
     --cor-secundaria-escura: #222222;
 
@@ -18,11 +18,11 @@
     --fonte-logo: "Outfit", sans-serif;
 
     --tamanho-pequeno: 0.75rem;
-    --tamanho-base1: 1rem;
-    --tamanho-base2: 1.5rem;
-    --tamanho-titulo: 2rem;
-    --tamanho-titulo-grande: 3rem;
-    --tamanho-logo: 1.8rem;
+    --tamanho-base1: 0.9rem;
+    --tamanho-base2: 1.25rem;
+    --tamanho-titulo: 1.5rem;
+    --tamanho-titulo-grande: 2.0rem;
+    --tamanho-logo: 2.5rem;
 }
 
 * {

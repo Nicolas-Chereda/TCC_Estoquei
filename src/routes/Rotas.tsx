@@ -1,9 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 
 import Layout from "../components/layout/Layout";
-import Principal from "../pages/Principal";
+
+/* import Principal from "../pages/funcionalPages/Principal"; */
+import CadastroProdutos from "../pages/funcionalPages/CadastroProdutos";
+import Dashboard from "../pages/funcionalPages/Dashboard";
+import DetalheProduto from "../pages/funcionalPages/DetalheProduto";
+import Historico from "../pages/funcionalPages/Historico";
+import ListaProdutos from "../pages/funcionalPages/ListaProdutos";
+import RegistrarMovimento from "../pages/funcionalPages/RegistrarMovimento"
+import Relatorios from "../pages/funcionalPages/Relatorios";
+import SobreNos from "../pages/funcionalPages/SobreNos";
 
 const Rotas = () => {
     return (
@@ -13,7 +23,15 @@ const Rotas = () => {
                 <Route path="/login" element={<Login />} />
 
                 <Route path="principal" element={<Layout />}>
-                    <Route index element={<Principal />} />
+                    <Route index element={<SobreNos />} />
+
+                    <Route path="cadastroProd" element={<CadastroProdutos />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="detalheProduto" element={<DetalheProduto />} />
+                    <Route path="historico" element={<Historico />} />
+                    <Route path="listaProdutos" element={<ListaProdutos />} />
+                    <Route path="registrarMovimento" element={<RegistrarMovimento />} />
+                    <Route path="relatorios" element={<Relatorios />} />
                 </Route>
             </Routes>
         </BrowserRouter>

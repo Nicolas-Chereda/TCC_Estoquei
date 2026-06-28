@@ -1,16 +1,17 @@
 .gridContainer {
     display: grid;
-    min-height: 100vh;
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: auto 1fr auto;
+    min-height: 130vh;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr 30vh;
     grid-template-areas:
-        "cabecalho cabecalho"
+        "lateral cabecalho"
         "lateral conteudo"
-        "rodape rodape";
+        "lateral rodape";
 }
 
+
 header {
-    grid-area: cabecalho;
+    grid-area: cabecalho;      
 }
 
 aside {

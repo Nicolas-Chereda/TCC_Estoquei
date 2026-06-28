@@ -1,3 +1,4 @@
 .container {
-    background-color: var(--cor-primaria-base);
+    background-color: var(--cor-primaria-escura);
+    text-align: center;
 }

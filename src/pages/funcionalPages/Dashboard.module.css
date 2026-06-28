@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #222222;
+}
+
+
+.container {
+    min-height: 100%;
+    background: linear-gradient(160deg,#FFB066,#FF7A00);
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.titulo {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.card {
+    width: 150px;
+    height: 200px;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.card__content {
+  background: linear-gradient(160deg,var(--cor-primaria-escura),#FF7A00);
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texto_card{
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    gap: 20px;
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center;     /* Centraliza horizontalmente */
+    text-align: center;      /* Garante que o texto fique no meio */
+    gap: 15px;               /* Cria um espaço perfeito entre a palavra e o loading */
+}
+
+.quadrado{
+    width: 246px;
+    height: 200px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.quadrado2{
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.quadrado3 {
+    width: 600px;
+    height: 200px;
+    padding: 5px;
+}
+
+.quadrado4 {
+    width: 550px;
+    height: 200px;
+    padding: 5px;
+}
+
+.quadrado_content {
+  background: linear-gradient(160deg,var(--cor-primaria-escura),#FF7A00);
+  border-radius: 17px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.texto_quadrado{  
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    gap: 3px;
+    align-items: center;     /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    text-align: center;      /* Garante que o texto fique no meio */
+    gap: 15px; 
+}
