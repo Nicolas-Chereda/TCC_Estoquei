@@ -1,0 +1,26 @@
+.gridContainer {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "cabecalho cabecalho"
+        "lateral conteudo"
+        "rodape rodape";
+}
+
+header {
+    grid-area: cabecalho;
+}
+
+aside {
+    grid-area: lateral;
+}
+
+main {
+    grid-area: conteudo;
+}
+
+footer {
+    grid-area: rodape;
+}
