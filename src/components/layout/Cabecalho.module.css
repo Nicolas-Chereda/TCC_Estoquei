@@ -1,5 +1,5 @@
 .container {
-    background-color: var(--cor-fundo);
+    background-color: var(--cor-neutra-branco);
     border-bottom: 1px solid var(--cor-secundaria-clara);
     height: 50px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
