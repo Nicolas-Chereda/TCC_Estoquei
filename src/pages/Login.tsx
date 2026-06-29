@@ -11,6 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { type UsuarioTipo } from "../types/User";
 import { UsuarioContexto } from "../contexts/UsuarioContexto";
 
+import { useNavigate } from "react-router-dom";
+
+
 const registroSchema = z.object({
     nome: z
         .string()
@@ -30,14 +33,8 @@ const loginSchema = z.object({
 });
 
 const Login = () => {
-    {
-        /*Lado do painel*/
-    }
-    const [ativo, setAtivo] = useState(false);
 
-    {
-        /* Parte do Registro/Login */
-    }
+    const [ativo, setAtivo] = useState(false);
 
     const {
         setNomeUsuarioContexto,
@@ -80,8 +77,11 @@ const Login = () => {
             alert("Insira sua senha registrada");
         } else {
             alert("Login realizado com sucesso");
+            navigate('/principal')
         }
     };
+
+    const navigate = useNavigate()
 
     return (
         <div className={estilos.container}>
