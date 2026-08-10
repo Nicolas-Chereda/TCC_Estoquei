@@ -2,7 +2,7 @@
     display: grid;
     min-height: 100dvh;
     grid-template-columns: 252px minmax(0, 1fr);
-    grid-template-rows: 72px minmax(0, 1fr) auto;
+    grid-template-rows: 78px minmax(calc(100dvh - 78px), auto) auto;
     grid-template-areas:
         "lateral cabecalho"
         "lateral conteudo"
@@ -28,7 +28,7 @@ footer {
 @media (max-width: 900px) {
     .gridContainer {
         grid-template-columns: 1fr;
-        grid-template-rows: 64px auto minmax(0, 1fr) auto;
+        grid-template-rows: 64px minmax(calc(100dvh - 64px), auto) auto;
         grid-template-areas:
             "cabecalho"
             "lateral"
