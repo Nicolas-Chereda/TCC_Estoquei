@@ -15,7 +15,6 @@
     z-index: 1000;
 }
 
-
 .navbar button {
     position: fixed;
     z-index: 100;
@@ -25,14 +24,14 @@
     border: none;
     background-color: transparent;
     font-weight: 400;
-    font-size: var(--tamanho-base1);
+    font-size: var(--fonte-corpo);
     border-radius: 100px;
     border: 1px solid;
 }
 
 .navbar button:hover {
     color: var(--cor-fundo);
-    background-color: var(--cor-secundaria-escura);
+    background-color: var(--cor-texto);
     transition: 0.3s;
     cursor: pointer;
 }
@@ -55,7 +54,7 @@
 .logo h2 {
     margin-top: 5%;
     font-family: var(--fonte-logo);
-    font-size: var(--tamanho-titulo);
+    font-size: var(--fonte-titulo);
 }
 
 .conteudo {
@@ -63,7 +62,7 @@
     background: linear-gradient(
         160deg,
         var(--cor-primaria-clara),
-        var(--cor-primaria-base)
+        var(--cor-primaria)
     );
     display: flex;
     align-items: center;
@@ -85,7 +84,7 @@
 }
 
 .texto h1 {
-    font-size: var(--tamanho-titulo-grande);
+    font-size: var(--fonte-titulo-grande);
 }
 
 .texto button.comecar {
@@ -94,14 +93,14 @@
     border-radius: 100px;
     width: 200px;
     padding: 8px 10px;
-    font-size: var(--tamanho-base1);
+    font-size: var(--fonte-corpo);
     font-weight: 400;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--cor-secundaria-escura);
+    border: 1px solid var(--cor-texto);
 }
 
 .texto button.comecar:hover {
-    background-color: var(--cor-secundaria-escura);
+    background-color: var(--cor-texto);
     color: var(--cor-fundo);
     border: var(--cor-fundo) 1px solid;
     cursor: pointer;
@@ -181,7 +180,7 @@
     animation: flutuandoAgenda 5s infinite alternate;
 }
 
-/*SEÇÃO 1 (Sobre Nós e Imagem)*/
+/*Seção 1 (Sobre Nós e Imagem)*/
 .secao1 {
     background-color: var(--cor-fundo);
     height: 100vh;
@@ -220,14 +219,14 @@ img {
     position: absolute;
     left: 45%;
     top: 10%;
-    font-size: var(--tamanho-logo);
+    font-size: var(--fonte-logo-tamanho);
 }
 
 .textoSobreNos .titulo2 {
     position: absolute;
     left: 45%;
     top: 20%;
-    font-size: var(--tamanho-logo);
+    font-size: var(--fonte-logo-tamanho);
 }
 
 .textoSobreNos p {
@@ -258,7 +257,7 @@ img {
 }
 
 .tituloSolucoes h1 {
-    font-size: var(--tamanho-titulo-grande);
+    font-size: var(--fonte-titulo-grande);
 }
 
 .containerCardsSolucoes {
@@ -268,20 +267,20 @@ img {
 }
 
 .cardSolucao {
-    width: 300px;
+    color: var(--cor-texto-claro);
+    width: 320px;
     aspect-ratio: 1/1;
-    border-radius: 8px;
     background: linear-gradient(
         160deg,
-        var(--cor-primaria-clara),
-        var(--cor-primaria-base)
+        var(--cor-primaria),
+        var(--cor-primaria-hover)
     );
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .nomeSolucao {
@@ -291,5 +290,22 @@ img {
 }
 
 .nomeSolucao .icone {
-    font-size: var(--tamanho-titulo-grande);
+    font-size: var(--fonte-titulo-grande);
+}
+
+footer {
+    padding: 18px 32px;
+    color: var(--cor-fundo);    
+    border-top: 1px solid var(--cor-fundo);
+    background: linear-gradient(
+        180deg,
+        var(--cor-primaria) 0%,
+        var(--cor-primaria-hover) 100%
+    );  
+    text-align: center;
+    font-size: var(--fonte-pequena);
+}
+
+footer p {
+    margin-bottom: 30px;
 }

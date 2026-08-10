@@ -5,7 +5,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const Relatorios = () => {
     return (
         <div className={estilos.container}>
-            <h1 className={estilos.titulo}>RELATÓRIO</h1>
+            <h1 className={estilos.titulo}>Relatório</h1>
 
             <div className={estilos.cards}>
                 {/*---------------- Card 1 ----------------*/}

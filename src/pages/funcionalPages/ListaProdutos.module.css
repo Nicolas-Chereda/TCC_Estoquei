@@ -1,13 +1,9 @@
-/* ─── Página ──────────────────────────────────────────────────────────────── */
-
 .pagina {
     padding: 32px 40px;
     background: var(--cor-fundo);
     min-height: 100vh;
     font-family: var(--fonte-base);
 }
-
-/* ─── Topo da página ──────────────────────────────────────────────────────── */
 
 .topo {
     display: flex;
@@ -18,11 +14,21 @@
 }
 
 .topoEsquerda h1 {
-    font-size: var(--tamanho-titulo);
+    font-size: clamp(1.55rem, 3vw, 2rem);
     font-weight: 700;
-    color: #1a0a00;
+    color: #3b1c00;
     margin-bottom: 4px;
     font-family: var(--fonte-base);
+}
+
+.topoEsquerda h1::after {
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin-top: 10px;
+    border-radius: 999px;
+    background: var(--cor-primaria);
+    content: "";
 }
 
 .topoEsquerda p {
@@ -34,7 +40,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--cor-primaria-base);
+    background: var(--cor-primaria);
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -43,19 +49,20 @@
     font-weight: 600;
     font-family: var(--fonte-base);
     cursor: pointer;
-    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    transition:
+        0.15s,
+        transform 0.15s,
+        box-shadow 0.15s;
     white-space: nowrap;
     flex-shrink: 0;
     box-shadow: 0 2px 12px rgba(255, 123, 0, 0.3);
 }
 
 .btnAdicionar:hover {
-    background: var(--cor-primaria-escura);
+    background: var(--cor-primaria-hover);
     transform: translateY(-1px);
     box-shadow: 0 4px 18px rgba(255, 123, 0, 0.4);
 }
-
-/* ─── Cards de resumo ─────────────────────────────────────────────────────── */
 
 .resumo {
     display: grid;
@@ -65,7 +72,7 @@
 }
 
 .resumoCard {
-    background: var(--cor-neutra-branco);
+    background: var(--cor-superficie);
     border: 1px solid #ffe5cc;
     border-radius: 16px;
     padding: 20px 24px;
@@ -77,8 +84,8 @@
 }
 
 .resumoCardAlerta {
-    background: var(--cor-primaria-base);
-    border-color: var(--cor-primaria-base);
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
 }
 
 .resumoLabel {
@@ -103,7 +110,7 @@
 }
 
 .resumoValorAlerta {
-    color: var(--cor-neutra-branco);
+    color: var(--cor-superficie);
 }
 
 .resumoSub {
@@ -115,10 +122,8 @@
     color: rgba(255, 255, 255, 0.75);
 }
 
-/* ─── Painel de filtros ───────────────────────────────────────────────────── */
-
 .painel {
-    background: var(--cor-neutra-branco);
+    background: var(--cor-superficie);
     border: 1px solid #ffe5cc;
     border-radius: 16px;
     padding: 20px 24px;
@@ -147,7 +152,7 @@
 }
 
 .campoBusca:focus-within {
-    border-color: var(--cor-primaria-base);
+    border-color: var(--cor-primaria);
 }
 
 .campoBusca svg {
@@ -198,7 +203,7 @@
 }
 
 .select:focus {
-    border-color: var(--cor-primaria-base);
+    border-color: var(--cor-primaria);
 }
 
 /* Chips de status */
@@ -221,9 +226,9 @@
 }
 
 .chipAtivo {
-    border-color: var(--cor-primaria-base);
-    background: var(--cor-primaria-base);
-    color: var(--cor-neutra-branco);
+    border-color: var(--cor-primaria);
+    background: var(--cor-primaria);
+    color: var(--cor-superficie);
 }
 
 .chipInativo {
@@ -233,11 +238,9 @@
 }
 
 .chipInativo:hover {
-    border-color: var(--cor-primaria-base);
-    color: var(--cor-primaria-base);
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
 }
-
-/* ─── Alerta ──────────────────────────────────────────────────────────────── */
 
 .alerta {
     display: flex;
@@ -256,10 +259,8 @@
     margin: 0;
 }
 
-/* ─── Tabela ──────────────────────────────────────────────────────────────── */
-
 .tabelaWrap {
-    background: var(--cor-neutra-branco);
+    background: var(--cor-superficie);
     border: 1px solid #ffe5cc;
     border-radius: 16px;
     overflow: hidden;
@@ -293,12 +294,14 @@
     font-family: var(--fonte-base);
     color: #994a00;
     cursor: pointer;
-    transition: border-color 0.15s, color 0.15s;
+    transition:
+        border-color 0.15s,
+        color 0.15s;
 }
 
 .btnOrdenar:hover {
-    border-color: var(--cor-primaria-base);
-    color: var(--cor-primaria-base);
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
 }
 
 table {
@@ -328,7 +331,7 @@ thead th:last-child {
 
 tbody tr {
     border-bottom: 1px solid #fff0e0;
-    transition: background 0.12s;
+    transition: 0.12s;
     cursor: pointer;
 }
 
@@ -350,8 +353,6 @@ tbody td {
 tbody td:last-child {
     text-align: right;
 }
-
-/* ─── Células especiais ───────────────────────────────────────────────────── */
 
 .celulaProduto {
     display: flex;
@@ -392,11 +393,18 @@ tbody td:last-child {
     font-weight: 600;
 }
 
-.qtdNormal { color: #1a0a00; font-weight: 700; }
-.qtdBaixo  { color: var(--cor-primaria-base); font-weight: 700; }
-.qtdZerado { color: #8b1f1f; font-weight: 700; }
-
-/* ─── Status pill ─────────────────────────────────────────────────────────── */
+.qtdNormal {
+    color: #1a0a00;
+    font-weight: 700;
+}
+.qtdBaixo {
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+.qtdZerado {
+    color: #8b1f1f;
+    font-weight: 700;
+}
 
 .pill {
     display: inline-flex;
@@ -409,11 +417,18 @@ tbody td:last-child {
     white-space: nowrap;
 }
 
-.pillNormal { background: #e1f5ee; color: #085041; }
-.pillBaixo  { background: #fff2d6; color: #7a4500; }
-.pillZerado { background: #fdeaea; color: #8b1f1f; }
-
-/* ─── Botão de ações ──────────────────────────────────────────────────────── */
+.pillNormal {
+    background: #e1f5ee;
+    color: #085041;
+}
+.pillBaixo {
+    background: #fff2d6;
+    color: #7a4500;
+}
+.pillZerado {
+    background: #fdeaea;
+    color: #8b1f1f;
+}
 
 .btnAcoes {
     background: none;
@@ -429,12 +444,10 @@ tbody td:last-child {
 }
 
 .btnAcoes:hover {
-    background: var(--cor-primaria-base);
-    border-color: var(--cor-primaria-base);
-    color: var(--cor-neutra-branco);
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: var(--cor-superficie);
 }
-
-/* ─── Estado vazio ────────────────────────────────────────────────────────── */
 
 .vazio {
     text-align: center;
@@ -458,7 +471,7 @@ tbody td:last-child {
     color: #994a00;
 }
 
-/* ─── Responsivo ──────────────────────────────────────────────────────────── */
+/* -------------- RESPONSIVIDADE --------------- */
 
 @media (max-width: 1100px) {
     .resumo {

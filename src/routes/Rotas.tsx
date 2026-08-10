@@ -11,7 +11,7 @@ import Dashboard from "../pages/funcionalPages/Dashboard";
 import DetalheProduto from "../pages/funcionalPages/DetalheProduto";
 import Historico from "../pages/funcionalPages/Historico";
 import ListaProdutos from "../pages/funcionalPages/ListaProdutos";
-import RegistrarMovimento from "../pages/funcionalPages/RegistrarMovimento"
+import RegistrarMovimento from "../pages/funcionalPages/RegistrarMovimento";
 import Relatorios from "../pages/funcionalPages/Relatorios";
 import SobreNos from "../pages/funcionalPages/SobreNos";
 
@@ -30,7 +30,10 @@ const Rotas = () => {
                     <Route path="detalheProduto" element={<DetalheProduto />} />
                     <Route path="historico" element={<Historico />} />
                     <Route path="listaProdutos" element={<ListaProdutos />} />
-                    <Route path="registrarMovimento" element={<RegistrarMovimento />} />
+                    <Route
+                        path="registrarMovimento"
+                        element={<RegistrarMovimento />}
+                    />
                     <Route path="relatorios" element={<Relatorios />} />
                 </Route>
             </Routes>

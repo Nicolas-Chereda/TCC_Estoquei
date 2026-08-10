@@ -1,17 +1,16 @@
 .gridContainer {
     display: grid;
-    min-height: 130vh;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: auto 1fr 30vh;
+    min-height: 100dvh;
+    grid-template-columns: 252px minmax(0, 1fr);
+    grid-template-rows: 72px minmax(0, 1fr) auto;
     grid-template-areas:
         "lateral cabecalho"
         "lateral conteudo"
-        "lateral rodape";
+        "rodape rodape";
 }
 
-
 header {
-    grid-area: cabecalho;      
+    grid-area: cabecalho;
 }
 
 aside {
@@ -24,4 +23,16 @@ main {
 
 footer {
     grid-area: rodape;
+}
+
+@media (max-width: 900px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+        grid-template-rows: 64px auto minmax(0, 1fr) auto;
+        grid-template-areas:
+            "cabecalho"
+            "lateral"
+            "conteudo"
+            "rodape";
+    }
 }

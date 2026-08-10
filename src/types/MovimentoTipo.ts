@@ -1,8 +1,8 @@
 export type MovimentoTipo = {
-    produto : string;
+    produto: string;
     marca: string;
     codigo: number;
     quantidade: number;
     estoque: number;
     entrasai: string;
-}
+};

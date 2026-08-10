@@ -12,8 +12,6 @@ const CadastroProdutos = () => {
             <form className={estilos.formProduto}>
                 {/* ------------- SEÇÃO DE INFORMAÇÕES BÁSICAS ------------- */}
                 <section className={estilos.secaoCadastro}>
-                    <h3>Informações básicas</h3>
-
                     <div className={estilos.campo}>
                         <label htmlFor="nome">Nome do produto</label>
                         <input
@@ -43,8 +41,6 @@ const CadastroProdutos = () => {
 
                 {/* ------------- SEÇÃO DE CATEGORIAS E MARCAS ------------- */}
                 <section className={estilos.secaoCadastro}>
-                    <h3>Categoria e marca</h3>
-
                     <div className={estilos.campo}>
                         <label htmlFor="categoria">Categoria</label>
                         <select id="categoria">
@@ -69,8 +65,6 @@ const CadastroProdutos = () => {
                 <section
                     className={`${estilos.secaoCadastro} ${estilos.secao3}`}
                 >
-                    <h3>Valores e estoque</h3>
-
                     <div className={estilos.campo}>
                         <label htmlFor="precoCusto">Preço de custo</label>
                         <input
@@ -110,8 +104,6 @@ const CadastroProdutos = () => {
 
                 {/* ------------- SEÇÃO DE STATUS DO PRODUTO ------------- */}
                 <section className={estilos.secaoCadastro}>
-                    <h3>Status do produto</h3>
-
                     <div className={`${estilos.campo} ${estilos.campoSwitch}`}>
                         <label htmlFor="prodAtivo" className={estilos.switch}>
                             <input id="prodAtivo" type="checkbox" />
@@ -125,8 +117,6 @@ const CadastroProdutos = () => {
                     </div>
                     <button type="submit">Cadastrar produto</button>
                 </section>
-
-                
             </form>
         </div>
     );

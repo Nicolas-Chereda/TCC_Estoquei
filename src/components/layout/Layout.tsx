@@ -9,7 +9,9 @@ export default function Layout() {
         <div className={estilos.gridContainer}>
             <Cabecalho />
             <Menu />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <Rodape />
         </div>
     );

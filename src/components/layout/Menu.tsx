@@ -1,7 +1,9 @@
 import estilos from "./Menu.module.css";
 import Logo from "../../assets/LogoBranca.png";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import { RxExit } from "react-icons/rx";
 
 export default function Menu() {
     return (
@@ -12,40 +14,48 @@ export default function Menu() {
             </div>
 
             <nav>
-                <Link className={estilos.link} to="/principal">
+                <NavLink end className={estilos.link} to="/principal">
                     Sobre nós
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/dashboard">
+                <NavLink className={estilos.link} to="/principal/dashboard">
                     Dashboard
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/cadastroProd">
+                <NavLink className={estilos.link} to="/principal/cadastroProd">
                     Cadastro de Produtos
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/listaProdutos">
+                <NavLink className={estilos.link} to="/principal/listaProdutos">
                     Lista de Produtos
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/detalheProduto">
+                <NavLink
+                    className={estilos.link}
+                    to="/principal/detalheProduto"
+                >
                     Detalhe do Produto
-                </Link>
+                </NavLink>
 
-                <Link
+                <NavLink
                     className={estilos.link}
                     to="/principal/registrarMovimento"
                 >
                     Registrar Movimento
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/historico">
+                <NavLink className={estilos.link} to="/principal/historico">
                     Histórico
-                </Link>
+                </NavLink>
 
-                <Link className={estilos.link} to="/principal/relatorios">
+                <NavLink className={estilos.link} to="/principal/relatorios">
                     Relatórios
-                </Link>
+                </NavLink>
+
+                <NavLink className={`${estilos.link} ${estilos.sair}`} to="/">
+                    <RxExit className={estilos.icone} />
+                    Sair
+                </NavLink>
             </nav>
         </aside>
     );

@@ -7,25 +7,33 @@
     background-color: var(--cor-fundo);
 }
 
-
 .sobre {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-
 .sobre h1 {
-    font-size: var(--tamanho-titulo);
+    color: #3b1c00;
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 700;
 }
 
+.sobre h1::after {
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin-top: 10px;
+    border-radius: 999px;
+    background: var(--cor-primaria);
+    content: "";
+}
 
 .sobre p {
-    color: var(--cor-secundaria-base);
-    font-size: var(--tamanho-base1);
+    color: var(--cor-texto-secundario);
+    font-size: var(--fonte-corpo);
     max-width: 900px;
 }
-
 
 .equipe {
     display: flex;
@@ -35,21 +43,18 @@
     gap: 25px;
 }
 
-
 .equipe h2 {
-    font-size: var(--tamanho-base2);
+    font-size: var(--fonte-subtitulo);
 }
-
 
 .imagemGrupo {
     width: 500px;
     height: 280px;
-    border: 1px solid var(--cor-secundaria-base);
+    border: 1px solid var(--cor-texto-secundario);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 .nomes {
     display: flex;
@@ -58,8 +63,7 @@
     gap: 8px;
 }
 
-
 .nomes p {
-    font-size: var(--tamanho-base);
-    color: var(--cor-neutra-preto);
+    font-size: var(--fonte-corpo);
+    color: var(--cor-texto);
 }

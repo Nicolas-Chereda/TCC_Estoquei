@@ -13,7 +13,6 @@ import { UsuarioContexto } from "../contexts/UsuarioContexto";
 
 import { useNavigate } from "react-router-dom";
 
-
 const registroSchema = z.object({
     nome: z
         .string()
@@ -33,7 +32,6 @@ const loginSchema = z.object({
 });
 
 const Login = () => {
-
     const [ativo, setAtivo] = useState(false);
 
     const {
@@ -77,11 +75,11 @@ const Login = () => {
             alert("Insira sua senha registrada");
         } else {
             alert("Login realizado com sucesso");
-            navigate('/principal')
+            navigate("/principal");
         }
     };
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <div className={estilos.container}>
