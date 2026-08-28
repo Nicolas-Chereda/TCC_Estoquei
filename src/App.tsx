@@ -1,11 +1,11 @@
 import Rotas from "./routes/Rotas.tsx";
-import { UsuarioProvider } from "./contexts/UsuarioContexto.tsx";
+import { AutenticacaoProvider } from "./contexts/AutenticacaoContexto.tsx";
 
 const App = () => {
     return (
-        <UsuarioProvider>
-            <Rotas />
-        </UsuarioProvider>
+        <AutenticacaoProvider>
+                <Rotas />
+        </AutenticacaoProvider>
     );
 };
 

@@ -9,9 +9,20 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type UsuarioTipo } from "../types/User";
-import { UsuarioContexto } from "../contexts/UsuarioContexto";
+import { useAutenticacao } from "../hooks/useAutenticacao";
 
 import { useNavigate } from "react-router-dom";
+
+type RegisterValues = {
+    nome: string
+    email: string
+    senha: string
+}
+
+type LoginValues = {
+    email: string
+    senha: string
+}
 
 const registroSchema = z.object({
     nome: z
@@ -34,17 +45,11 @@ const loginSchema = z.object({
 const Login = () => {
     const [ativo, setAtivo] = useState(false);
 
-    const {
-        setNomeUsuarioContexto,
-        setEmailUsuarioContexto,
-        setSenhaUsuarioContexto,
-    } = useContext(UsuarioContexto);
-    const { emailUsuarioContexto, senhaUsuarioContexto } =
-        useContext(UsuarioContexto);
-
+   
     const registroForm = useForm<UsuarioTipo>({
         resolver: zodResolver(registroSchema),
     });
+
     const loginForm = useForm<UsuarioTipo>({
         resolver: zodResolver(loginSchema),
     });
@@ -54,28 +59,33 @@ const Login = () => {
         handleSubmit: handleSubmitLogin,
         formState: { errors: errorsLogin },
     } = loginForm;
+
     const {
         register: registerRegistro,
         handleSubmit: handleSubmitRegistro,
         formState: { errors: errorsRegistro },
     } = registroForm;
 
-    const criarUsuario = (data: UsuarioTipo) => {
-        setNomeUsuarioContexto(data.nome);
-        setEmailUsuarioContexto(data.email);
-        setSenhaUsuarioContexto(data.senha);
 
-        alert(`Bem vindo ${data.nome}!`);
+    const autenticacao = useAutenticacao()
+
+    const criarUsuario = async (data: RegisterValues) => {
+        const retornoRegistro = await autenticacao.criarAutenticacaoUsuario(data.email, data.senha)
+
+        if(retornoRegistro == "sucesso"){
+            alert(`Bem vindo ${data.nome}!`);
+        } else {
+            alert(retornoRegistro)
+        }
     };
 
-    const autenticarUsuario = (data: UsuarioTipo) => {
-        if (data.email !== emailUsuarioContexto) {
-            alert("Insira seu e-mail registrado!");
-        } else if (data.senha !== senhaUsuarioContexto) {
-            alert("Insira sua senha registrada");
+    const autenticarUsuario = async (data: LoginValues) => {
+        const retornoLogin = await autenticacao.validarUsuario(data.email, data.senha)
+
+        if(retornoLogin == "sucesso"){
+            navigate('/principal')
         } else {
-            alert("Login realizado com sucesso");
-            navigate("/principal");
+            alert(retornoLogin)
         }
     };
 
