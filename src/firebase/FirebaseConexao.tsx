@@ -89,7 +89,7 @@ export function FirebaseConexao() {
   } else {
     return (
       <div className={estilos.conteiner}>
-        <h1 className={estilos.titulo}>Cinefilia</h1>
+        <h1 className={estilos.titulo}>Estoquei!</h1>
         <MdError className={estilos.icone} />
         <p className={estilos.mensagem}>{mensagemErro}</p>
       </div>

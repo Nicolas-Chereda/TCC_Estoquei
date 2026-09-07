@@ -56,6 +56,7 @@
     white-space: nowrap;
     flex-shrink: 0;
     box-shadow: 0 2px 12px rgba(255, 123, 0, 0.3);
+    text-decoration: none;
 }
 
 .btnAdicionar:hover {

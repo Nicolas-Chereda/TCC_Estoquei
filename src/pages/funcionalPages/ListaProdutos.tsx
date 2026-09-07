@@ -1,134 +1,22 @@
 import styles from "./ListaProdutos.module.css";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-// ─── Tipos ────────────────────────────────────────────────────────────────────
-
-type StatusProduto = "normal" | "baixo" | "zerado";
-
-interface Produto {
-    id: number;
-    nome: string;
-    codigo: string;
-    categoria: string;
-    quantidade: number;
-    minimo: number;
-    precoCusto: number;
-    precoVenda: number;
-    status: StatusProduto;
-}
-
-// ─── Dados fictícios ──────────────────────────────────────────────────────────
-
-const PRODUTOS: Produto[] = [
-    {
-        id: 1,
-        nome: "Café premium 500g",
-        codigo: "7891234",
-        categoria: "Alimentos",
-        quantidade: 42,
-        minimo: 20,
-        precoCusto: 12.5,
-        precoVenda: 22.9,
-        status: "normal",
-    },
-    {
-        id: 2,
-        nome: "Açúcar cristal 1kg",
-        codigo: "7895678",
-        categoria: "Alimentos",
-        quantidade: 8,
-        minimo: 15,
-        precoCusto: 3.2,
-        precoVenda: 6.99,
-        status: "baixo",
-    },
-    {
-        id: 3,
-        nome: "Detergente 500ml",
-        codigo: "7899012",
-        categoria: "Limpeza",
-        quantidade: 0,
-        minimo: 10,
-        precoCusto: 1.8,
-        precoVenda: 4.5,
-        status: "zerado",
-    },
-    {
-        id: 4,
-        nome: "Arroz tipo 1 5kg",
-        codigo: "7893456",
-        categoria: "Alimentos",
-        quantidade: 31,
-        minimo: 10,
-        precoCusto: 18.0,
-        precoVenda: 29.9,
-        status: "normal",
-    },
-    {
-        id: 5,
-        nome: "Sabão em pó 1kg",
-        codigo: "7897890",
-        categoria: "Limpeza",
-        quantidade: 5,
-        minimo: 8,
-        precoCusto: 7.4,
-        precoVenda: 14.9,
-        status: "baixo",
-    },
-    {
-        id: 6,
-        nome: "Leite integral 1L",
-        codigo: "7892345",
-        categoria: "Bebidas",
-        quantidade: 60,
-        minimo: 24,
-        precoCusto: 3.9,
-        precoVenda: 7.5,
-        status: "normal",
-    },
-    {
-        id: 7,
-        nome: "Água mineral 500ml",
-        codigo: "7896789",
-        categoria: "Bebidas",
-        quantidade: 14,
-        minimo: 30,
-        precoCusto: 0.8,
-        precoVenda: 2.0,
-        status: "baixo",
-    },
-    {
-        id: 8,
-        nome: "Amaciante 2L",
-        codigo: "7894567",
-        categoria: "Limpeza",
-        quantidade: 0,
-        minimo: 6,
-        precoCusto: 9.0,
-        precoVenda: 18.9,
-        status: "zerado",
-    },
-];
-
-// ─── StatusPill ───────────────────────────────────────────────────────────────
-
-function StatusPill({ status }: { status: StatusProduto }) {
-    const mapa: Record<StatusProduto, { classe: string; label: string }> = {
-        normal: { classe: styles.pillNormal, label: "Normal" },
-        baixo: { classe: styles.pillBaixo, label: "Baixo" },
-        zerado: { classe: styles.pillZerado, label: "Sem estoque" },
-    };
-    const { classe, label } = mapa[status];
-    return (
-        <span className={`${styles.pill} ${classe}`}>
-            <span aria-hidden="true">●</span>
-            {label}
-        </span>
-    );
-}
+import { useProdutos } from "../../contexts/ProdutosContexto";
 
 // ─── Componente principal ─────────────────────────────────────────────────────
 
 export default function ListaProdutos() {
+    
+    const {produtos} = useProdutos();
+
+    const navigate = useNavigate()
+
+    const irParaProduto = (codigo: number) => {
+        navigate('/principal/detalheProduto/'+ codigo)
+    }
+
+
     return (
         <div className={styles.pagina}>
             {/* ── Topo ── */}
@@ -137,7 +25,7 @@ export default function ListaProdutos() {
                     <h1>Produtos</h1>
                     <p>Gerencie e acompanhe seu estoque em tempo real</p>
                 </div>
-                <button className={styles.btnAdicionar}>
+                <Link to='/principal/cadastroProd' className={styles.btnAdicionar}>
                     <svg
                         width="18"
                         height="18"
@@ -150,19 +38,19 @@ export default function ListaProdutos() {
                         <path d="M12 5v14M5 12h14" strokeLinecap="round" />
                     </svg>
                     Adicionar produto
-                </button>
+                </Link>
             </div>
 
             {/* ── Cards de resumo ── */}
             <div className={styles.resumo}>
                 <div className={styles.resumoCard}>
                     <p className={styles.resumoLabel}>Total de produtos</p>
-                    <p className={styles.resumoValor}>8</p>
+                    <p className={styles.resumoValor}>0</p>
                     <p className={styles.resumoSub}>3 categorias</p>
                 </div>
                 <div className={styles.resumoCard}>
                     <p className={styles.resumoLabel}>Valor em estoque</p>
-                    <p className={styles.resumoValor}>R$ 1.423</p>
+                    <p className={styles.resumoValor}>0</p>
                     <p className={styles.resumoSub}>preço de custo</p>
                 </div>
                 <div
@@ -176,7 +64,7 @@ export default function ListaProdutos() {
                     <p
                         className={`${styles.resumoValor} ${styles.resumoValorAlerta}`}
                     >
-                        2
+                        0
                     </p>
                     <p
                         className={`${styles.resumoSub} ${styles.resumoSubAlerta}`}
@@ -190,7 +78,7 @@ export default function ListaProdutos() {
                         className={styles.resumoValor}
                         style={{ color: "var(--cor-primaria-base)" }}
                     >
-                        3
+                        0
                     </p>
                     <p className={styles.resumoSub}>abaixo do mínimo</p>
                 </div>
@@ -298,16 +186,9 @@ export default function ListaProdutos() {
                         </tr>
                     </thead>
                     <tbody>
-                        {PRODUTOS.map((p) => {
-                            const classeQtd =
-                                p.status === "zerado"
-                                    ? styles.qtdZerado
-                                    : p.status === "baixo"
-                                      ? styles.qtdBaixo
-                                      : styles.qtdNormal;
-
+                        {produtos.map((p) => {
                             return (
-                                <tr key={p.id}>
+                                <tr key={p.codigo} onClick={() => {irParaProduto(p.codigo)}}>
                                     <td>
                                         <div className={styles.celulaProduto}>
                                             <div>
@@ -338,15 +219,12 @@ export default function ListaProdutos() {
                                         R$ {p.precoVenda.toFixed(2)}
                                     </td>
                                     <td className={styles.tdMutado}>
-                                        {p.minimo} un.
+                                        {p.qtdMin} un.
                                     </td>
                                     <td>
-                                        <span className={classeQtd}>
-                                            {p.quantidade} un.
+                                        <span className={styles.classeQtd}>
+                                            {p.estoque} un.
                                         </span>
-                                    </td>
-                                    <td>
-                                        <StatusPill status={p.status} />
                                     </td>
                                     <td>
                                         <button className={styles.btnAcoes}>

@@ -1,21 +1,9 @@
 import styles from "./DetalheProduto.module.css";
 
-// ─── Dados fictícios ──────────────────────────────────────────────────────────
+import { useParams } from "react-router-dom";
+import { useProdutos } from "../../contexts/ProdutosContexto";
 
-const PRODUTO = {
-    nome: "Café premium 500g",
-    codigo: "7891234",
-    categoria: "Alimentos",
-    fornecedor: "Distribuidora Norte Ltda",
-    emoji: "☕",
-    quantidade: 8,
-    minimo: 20,
-    maximo: 100,
-    precoCusto: 12.5,
-    precoVenda: 22.9,
-    ultimaEntrada: "12/06/2025",
-    ultimaSaida: "18/06/2025",
-};
+// ─── Dados fictícios ──────────────────────────────────────────────────────────
 
 const HISTORICO = [
     {
@@ -65,18 +53,28 @@ const HISTORICO = [
     },
 ];
 
-const porcentagem = Math.min(
-    Math.round((PRODUTO.quantidade / PRODUTO.maximo) * 100),
-    100,
-);
-const margem = (
-    ((PRODUTO.precoVenda - PRODUTO.precoCusto) / PRODUTO.precoVenda) *
-    100
-).toFixed(0);
+
 
 // ─── Componente ───────────────────────────────────────────────────────────────
 
 export default function DetalheProduto() {
+
+    const { codigo } = useParams<{codigo: string}>();
+    const { produtos } = useProdutos();
+
+    const produto = produtos.find((produto) => produto.codigo == Number(codigo));
+
+    if (!produto) { return <h2>Produto não encontrado.</h2>; }
+
+    const porcentagem = Math.min(
+        Math.round((produto.estoque / produto.qtdMin) * 100), // ---------------- TEM QUE CORRIGIR ISSO AQUI COLOCANDO A QUANTIDADE MÁXIMA
+        100,
+    );
+    const margem = (
+        ((produto.precoVenda - produto.precoCusto) / produto.precoVenda) *
+        100
+    ).toFixed(0);
+
     return (
         <div className={styles.pagina}>
             {/* ── Topo ── */}
@@ -86,9 +84,9 @@ export default function DetalheProduto() {
                         ‹
                     </button>
                     <div className={styles.topoInfo}>
-                        <h1>{PRODUTO.nome}</h1>
+                        <h1>{produto.nome}</h1>
                         <p>
-                            Cód: {PRODUTO.codigo} · {PRODUTO.categoria}
+                            Cód: {produto.codigo} · {produto.categoria}
                         </p>
                     </div>
                 </div>
@@ -148,12 +146,10 @@ export default function DetalheProduto() {
                     {/* Identidade */}
                     <div className={styles.card}>
                         <div className={styles.produtoIdentidade}>
-                            <div className={styles.produtoEmoji}>
-                                {PRODUTO.emoji}
-                            </div>
-                            <p className={styles.produtoNome}>{PRODUTO.nome}</p>
+                            
+                            <p className={styles.produtoNome}>{produto.nome}</p>
                             <p className={styles.produtoCodigo}>
-                                Cód: {PRODUTO.codigo}
+                                Cód: {produto.codigo}
                             </p>
                             <span
                                 className={`${styles.statusBadge} ${styles.statusBaixo}`}
@@ -170,7 +166,7 @@ export default function DetalheProduto() {
                                     Categoria
                                 </span>
                                 <span className={styles.campoValor}>
-                                    {PRODUTO.categoria}
+                                    {produto.categoria}
                                 </span>
                             </div>
                             <div className={styles.campoLinha}>
@@ -178,23 +174,7 @@ export default function DetalheProduto() {
                                     Fornecedor
                                 </span>
                                 <span className={styles.campoValorMutado}>
-                                    {PRODUTO.fornecedor}
-                                </span>
-                            </div>
-                            <div className={styles.campoLinha}>
-                                <span className={styles.campoLabel}>
-                                    Última entrada
-                                </span>
-                                <span className={styles.campoValorMutado}>
-                                    {PRODUTO.ultimaEntrada}
-                                </span>
-                            </div>
-                            <div className={styles.campoLinha}>
-                                <span className={styles.campoLabel}>
-                                    Última saída
-                                </span>
-                                <span className={styles.campoValorMutado}>
-                                    {PRODUTO.ultimaSaida}
+                                    Fornecedor
                                 </span>
                             </div>
                         </div>
@@ -208,7 +188,7 @@ export default function DetalheProduto() {
                                 <div className={styles.precoItem}>
                                     <p className={styles.precoLabel}>Custo</p>
                                     <p className={styles.precoValor}>
-                                        R$ {PRODUTO.precoCusto.toFixed(2)}
+                                        R$ {produto.precoCusto.toFixed(2)}
                                     </p>
                                     <p className={styles.precoSub}>
                                         preço de compra
@@ -217,7 +197,7 @@ export default function DetalheProduto() {
                                 <div className={styles.precoItem}>
                                     <p className={styles.precoLabel}>Venda</p>
                                     <p className={styles.precoValor}>
-                                        R$ {PRODUTO.precoVenda.toFixed(2)}
+                                        R$ {produto.precoVenda.toFixed(2)}
                                     </p>
                                     <p className={styles.precoSub}>
                                         preço ao cliente
@@ -248,7 +228,7 @@ export default function DetalheProduto() {
                                     <p
                                         className={`${styles.estoqueValor} ${styles.estoqueValorBaixo}`}
                                     >
-                                        {PRODUTO.quantidade}
+                                        {produto.estoque}
                                     </p>
                                     <p className={styles.estoqueSub}>
                                         unidades
@@ -259,7 +239,7 @@ export default function DetalheProduto() {
                                         Mínimo
                                     </p>
                                     <p className={styles.estoqueValor}>
-                                        {PRODUTO.minimo}
+                                        {produto.qtdMin}
                                     </p>
                                     <p className={styles.estoqueSub}>
                                         unidades
@@ -270,7 +250,7 @@ export default function DetalheProduto() {
                                         Máximo
                                     </p>
                                     <p className={styles.estoqueValor}>
-                                        {PRODUTO.maximo}
+                                        *tem q adicionar*
                                     </p>
                                     <p className={styles.estoqueSub}>
                                         unidades

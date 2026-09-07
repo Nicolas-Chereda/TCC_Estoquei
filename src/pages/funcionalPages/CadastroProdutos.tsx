@@ -1,6 +1,64 @@
 import estilos from "./CadastroProdutos.module.css";
+import { useNavigate } from "react-router-dom";
+
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useProdutos } from "../../contexts/ProdutosContexto";
+
+type CadastroValues = {
+    nome: string;
+    codigo: number;
+    descricao: string;
+    categoria: string;
+    marca: string;
+    precoCusto: number;
+    precoVenda: number;
+    estoque: number;
+    qtdMin: number;
+}
+
+const cadastroSchema = z.object({
+    nome: z.string(),
+    codigo: z.number(),
+    descricao: z.string(),
+    categoria: z.string(),
+    marca: z.string(),
+    precoCusto: z.number(),
+    precoVenda: z.number(),
+    estoque: z.number(),
+    qtdMin: z.number()
+});
 
 const CadastroProdutos = () => {
+
+    const cadastroForm = useForm<CadastroValues>({resolver: zodResolver(cadastroSchema)})
+
+    const {register, handleSubmit} = cadastroForm
+
+    const {adicionarProduto} = useProdutos()
+
+    const navigation = useNavigate()
+
+    const cadastrarProduto = (data: CadastroValues) => {
+
+        const produto = {
+            codigo: data.codigo,
+            nome: data.nome,
+            descricao: data.descricao,
+            categoria: data.categoria,
+            marca: data.marca,
+            precoCusto: data.precoCusto,
+            precoVenda: data.precoVenda,
+            estoque: data.estoque,
+            qtdMin: data.qtdMin,
+        }
+
+        adicionarProduto(produto)
+        navigation('/principal/listaProdutos')
+    }
+
     return (
         <div className={estilos.container}>
             <h2 className={estilos.titulo}>Cadastro de Produto</h2>
@@ -9,7 +67,7 @@ const CadastroProdutos = () => {
                 Preencha as informações abaixo para cadastrar um novo produto.
             </p>
 
-            <form className={estilos.formProduto}>
+            <form className={estilos.formProduto} onSubmit={handleSubmit(cadastrarProduto)}>
                 {/* ------------- SEÇÃO DE INFORMAÇÕES BÁSICAS ------------- */}
                 <section className={estilos.secaoCadastro}>
                     <div className={estilos.campo}>
@@ -18,6 +76,7 @@ const CadastroProdutos = () => {
                             id="nome"
                             type="text"
                             placeholder="Digite o nome do produto"
+                            {...register("nome")}
                         />
                     </div>
 
@@ -27,6 +86,7 @@ const CadastroProdutos = () => {
                             id="codigo"
                             type="number"
                             placeholder="Digite o código do produto"
+                            {...register("codigo",{valueAsNumber: true})}
                         />
                     </div>
 
@@ -35,6 +95,7 @@ const CadastroProdutos = () => {
                         <textarea
                             id="descricao"
                             placeholder="Digite a descrição do produto..."
+                            {...register("descricao")}
                         />
                     </div>
                 </section>
@@ -43,7 +104,7 @@ const CadastroProdutos = () => {
                 <section className={estilos.secaoCadastro}>
                     <div className={estilos.campo}>
                         <label htmlFor="categoria">Categoria</label>
-                        <select id="categoria">
+                        <select id="categoria" {...register("categoria")}>
                             <option>Selecione uma categoria</option>
                             <option>Eletrônicos</option>
                             <option>Roupas</option>
@@ -57,6 +118,7 @@ const CadastroProdutos = () => {
                             id="marca"
                             type="text"
                             placeholder="Digite a marca"
+                            {...register("marca")}
                         />
                     </div>
                 </section>
@@ -71,6 +133,7 @@ const CadastroProdutos = () => {
                             id="precoCusto"
                             type="number"
                             placeholder="0,00"
+                            {...register("precoCusto", {valueAsNumber: true})}
                         />
                     </div>
 
@@ -80,25 +143,18 @@ const CadastroProdutos = () => {
                             id="precoVenda"
                             type="number"
                             placeholder="0,00"
+                            {...register("precoVenda", {valueAsNumber: true})}
                         />
                     </div>
 
                     <div className={estilos.campo}>
                         <label htmlFor="estoque">Estoque</label>
-                        <input id="estoque" type="number" placeholder="0" />
+                        <input id="estoque" type="number" placeholder="0" {...register("estoque", {valueAsNumber: true})} />
                     </div>
 
                     <div className={estilos.campo}>
-                        <label htmlFor="unidade">Unidade</label>
-                        <select id="unidade">
-                            <option value="">Selecione uma unidade</option>
-                            <option value="un">Unidade (UN)</option>
-                            <option value="kg">Quilograma (KG)</option>
-                            <option value="g">Grama (G)</option>
-                            <option value="l">Litro (L)</option>
-                            <option value="ml">Mililitro (ML)</option>
-                            <option value="cx">Caixa (CX)</option>
-                        </select>
+                        <label htmlFor="qtdMin">Quantidade mínima:</label>
+                        <input id="qtdMin" type="number" placeholder="0" {...register("qtdMin", {valueAsNumber: true})} />
                     </div>
                 </section>
 
@@ -115,7 +171,7 @@ const CadastroProdutos = () => {
                             <p>Produto disponível para venda na loja.</p>
                         </div>
                     </div>
-                    <button type="submit">Cadastrar produto</button>
+                    <button>Cadastrar produto</button>
                 </section>
             </form>
         </div>

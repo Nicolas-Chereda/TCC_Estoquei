@@ -1,6 +1,6 @@
 import estilos from "./Login.module.css";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoLogoGoogle } from "react-icons/io";
@@ -8,10 +8,9 @@ import { IoLogoGoogle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { type UsuarioTipo } from "../types/User";
 import { useAutenticacao } from "../hooks/useAutenticacao";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 type RegisterValues = {
     nome: string
@@ -46,11 +45,11 @@ const Login = () => {
     const [ativo, setAtivo] = useState(false);
 
    
-    const registroForm = useForm<UsuarioTipo>({
+    const registroForm = useForm<RegisterValues>({
         resolver: zodResolver(registroSchema),
     });
 
-    const loginForm = useForm<UsuarioTipo>({
+    const loginForm = useForm<LoginValues>({
         resolver: zodResolver(loginSchema),
     });
 
