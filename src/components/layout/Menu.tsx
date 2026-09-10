@@ -32,13 +32,6 @@ export default function Menu() {
 
                 <NavLink
                     className={estilos.link}
-                    to="/principal/detalheProduto"
-                >
-                    Detalhe do Produto
-                </NavLink>
-
-                <NavLink
-                    className={estilos.link}
                     to="/principal/registrarMovimento"
                 >
                     Registrar Movimento

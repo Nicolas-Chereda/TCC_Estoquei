@@ -1,20 +1,10 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-
-export type Produto = {
-    codigo: number;
-    nome: string;
-    descricao: string;
-    categoria: string;
-    marca: string;
-    precoCusto: number;
-    precoVenda: number;
-    estoque: number;
-    qtdMin: number;
-};
+import { type ProdutoTipo } from "../types/ProdutoTipo";
 
 type ProdutoContextoTipo = {
-    produtos: Produto[];
-    adicionarProduto: (produto: Produto) => void;
+    produtos: ProdutoTipo[];
+    adicionarProduto: (produto: ProdutoTipo) => void;
+    editarProduto: (produto: ProdutoTipo) => void;
 };
 
 const ProdutoContexto = createContext<ProdutoContextoTipo | undefined>(
@@ -26,14 +16,24 @@ type ProdutoProviderProps = {
 };
 
 export const ProdutoProvider = ({ children }: ProdutoProviderProps) => {
-    const [produtos, setProdutos] = useState<Produto[]>([]);
+    const [produtos, setProdutos] = useState<ProdutoTipo[]>([]);
 
-    const adicionarProduto = (produto: Produto) => {
+    const adicionarProduto = (produto: ProdutoTipo) => {
         setProdutos((produtosAtuais) => [...produtosAtuais, produto]);
     };
 
+    const editarProduto = (produtoEditado: ProdutoTipo) => {
+        setProdutos((produtosAtuais) =>
+            produtosAtuais.map((produto) =>
+                produto.codigo === produtoEditado.codigo
+                    ? produtoEditado
+                    : produto
+            )
+        );
+    };    
+
     return (
-        <ProdutoContexto.Provider value={{ produtos, adicionarProduto }}>
+        <ProdutoContexto.Provider value={{ produtos, adicionarProduto, editarProduto }}>
             {children}
         </ProdutoContexto.Provider>
     );

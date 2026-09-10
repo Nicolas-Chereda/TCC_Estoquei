@@ -116,43 +116,67 @@
 
 @keyframes flutuandoLapis {
     0% {
-        transform: translateY(0px);
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(10px, -8px) rotate(2deg);
     }
 
     50% {
-        transform: translateY(-10px) translateX(20px);
+        transform: translate(20px, -12px) rotate(0deg);
+    }
+
+    75% {
+        transform: translate(10px, -6px) rotate(-2deg);
     }
 
     100% {
-        transform: translateY(0px);
+        transform: translate(0px, 0px) rotate(0deg);
     }
 }
 
 @keyframes flutuandoTeclado {
     0% {
-        transform: translateY(0px);
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(-5px, -6px) rotate(-1deg);
     }
 
     50% {
-        transform: translateY(-10px) translateX(-20px);
+        transform: translate(-10px, -10px) rotate(0deg);
+    }
+
+    75% {
+        transform: translate(-5px, -5px) rotate(1deg);
     }
 
     100% {
-        transform: translateY(0px);
+        transform: translate(0px, 0px) rotate(0deg);
     }
 }
 
 @keyframes flutuandoAgenda {
     0% {
-        transform: translateY(-10px);
+        transform: translateY(-10px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-4px) rotate(1deg);
     }
 
     50% {
-        transform: translateY(-0px);
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-5px) rotate(-1deg);
     }
 
     100% {
-        transform: translateY(-10px);
+        transform: translateY(-10px) rotate(0deg);
     }
 }
 
@@ -161,7 +185,8 @@
     right: -4%;
     top: 30%;
     width: 350px;
-    animation: flutuandoTeclado 5s infinite alternate;
+    animation: flutuandoTeclado 7s ease-in-out infinite ;
+    animation-delay: -2s;
 }
 
 .imagem img.lapis {
@@ -169,7 +194,7 @@
     top: 50%;
     right: 50%;
     width: 200px;
-    animation: flutuandoLapis 5s infinite alternate;
+    animation: flutuandoLapis 6s ease-in-out  infinite ;
 }
 
 .imagem img.agenda {
@@ -177,7 +202,8 @@
     top: 20%;
     right: 50%;
     width: 250px;
-    animation: flutuandoAgenda 5s infinite alternate;
+    animation: flutuandoAgenda 5.5s ease-in-out infinite ;
+    animation-delay: -2s;
 }
 
 /*Seção 1 (Sobre Nós e Imagem)*/
@@ -193,14 +219,18 @@
     margin: 0 auto;
     width: 70%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 50px;
     position: relative;
 }
 
 .cardSobreNos {
-    flex: 50%;
+    width: 50%;
     aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
 }
 
 img {
@@ -208,24 +238,19 @@ img {
 }
 
 .textoSobreNos {
-    flex: 50%;
+    flex: 45%;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     gap: 10px;
 }
 
 .textoSobreNos .titulo1 {
-    position: absolute;
-    left: 45%;
-    top: 10%;
     font-size: var(--fonte-logo-tamanho);
+    margin-top: 10%;
 }
 
 .textoSobreNos .titulo2 {
-    position: absolute;
-    left: 45%;
-    top: 20%;
     font-size: var(--fonte-logo-tamanho);
 }
 

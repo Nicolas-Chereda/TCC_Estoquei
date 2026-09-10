@@ -416,6 +416,8 @@ tbody td:last-child {
     padding: 4px 12px;
     border-radius: 20px;
     white-space: nowrap;
+    background: #fff2d6;
+    color: #7a4500;
 }
 
 .pillNormal {

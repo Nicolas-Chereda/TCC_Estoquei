@@ -88,8 +88,8 @@ export default function ListaProdutos() {
             <div className={styles.alerta} role="alert">
                 <span aria-hidden="true">⚠️</span>
                 <p className={styles.alertaTexto}>
-                    <strong>2 produto(s) zerado(s)</strong> e{" "}
-                    <strong>3 com estoque baixo</strong> — verifique antes de
+                    <strong>0 produto(s) zerado(s)</strong> e{" "}
+                    <strong>0 com estoque baixo</strong> — verifique antes de
                     fazer novas vendas.
                 </p>
             </div>
@@ -224,6 +224,11 @@ export default function ListaProdutos() {
                                     <td>
                                         <span className={styles.classeQtd}>
                                             {p.estoque} un.
+                                        </span>
+                                    </td>
+                                    <td className={styles.tdBold}>
+                                        <span className={styles.pill}>
+                                            {p.status}
                                         </span>
                                     </td>
                                     <td>

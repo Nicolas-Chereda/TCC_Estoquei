@@ -1,48 +1,80 @@
 import estilos from "./RegistrarMovimento.module.css";
 
-/* import { useContext, useState } from "react"; */
-
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { type MovimentoTipo } from "../../types/MovimentoTipo";
+import { useProdutos } from "../../contexts/ProdutosContexto";
 
 const registroSchema = z.object({
-    produto: z.string().min(1, { message: "Informe o produto." }),
-    marca: z.string().min(1, { message: "Informe a marca." }),
-    codigo: z
-        .number({ message: "informe um codigo válido" })
-        .min(6, { message: "Informe um código com 6 caracteres." })
-        .max(6, { message: "Informe um código com 6 caracteres." }),
-    quantidade: z.number({ message: "informe uma quantidade válida" }),
-    estoque: z.number({ message: "informe uma quantidade de estoque válida" }),
-    entrasai: z.string().min(1, { message: "informe se entrou ou saiu." }),
-});
+    produto: z.number().min(1, {
+        message: "Informe o produto.",
+    }),
 
-const loginSchema = z.object({
-    email: z.email({ message: "Informe um e-mail válido." }),
-    senha: z
-        .string()
-        .length(6, { message: "Informe uma senha com 6 caracteres." }),
+    quantidade: z.number().min(1, {
+        message: "Informe uma quantidade válida.",
+    }),
+
+    data: z.string().min(1, {
+        message: "Informe uma data válida.",
+    }),
+
+    entrasai: z.string().min(1, {
+        message: "Informe se entrou ou saiu.",
+    }),
+
+    unitot: z.string().optional(),
+
+    preco: z.number().min(1, {
+        message: "Informe um preço válido.",
+    }).optional()
 });
 
 const RegistrarMovimento = () => {
+    const { produtos, editarProduto } = useProdutos();
+
     const registroForm = useForm<MovimentoTipo>({
         resolver: zodResolver(registroSchema),
     });
 
     const {
-        register: registerRegistro,
-        handleSubmit: handleSubmitRegistro,
-        formState: { errors: errorsRegistro },
+        register,
+        handleSubmit,
+        formState: { errors },
     } = registroForm;
 
-    const autenticarUsuario = (data: MovimentoTipo) => {
-        if (data.produto == "") {
-            alert("Insira um produto!");
-        } else {
-            alert("Produto inserido com sucesso");
+    const registrarMovimento = (data: MovimentoTipo) => {
+        const produto = produtos.find(
+            (p) => p.codigo === data.produto
+        );
+
+        if (!produto) {
+            alert("Produto não encontrado!");
+            return;
         }
+
+        let novoEstoque = produto.estoque;
+
+        if (data.entrasai === "entrada") {
+            novoEstoque += data.quantidade;
+        }
+
+        if (data.entrasai === "saida") {
+            if (data.quantidade > produto.estoque) {
+                alert("Não é possível retirar uma quantidade maior que o estoque.");
+                return;
+            }
+
+            novoEstoque -= data.quantidade;
+        }
+
+        editarProduto({
+            ...produto,
+            estoque: novoEstoque,
+        });
+
+        alert("Movimento registrado com sucesso!");
     };
 
     return (
@@ -50,88 +82,146 @@ const RegistrarMovimento = () => {
             <div className={estilos.conteudo}>
                 <form
                     className={estilos.formRegistrar}
-                    onSubmit={handleSubmitRegistro(autenticarUsuario)}
+                    onSubmit={handleSubmit(registrarMovimento)}
                 >
                     <div className={estilos.registrar}>
                         <h1>Registrar movimento</h1>
 
                         <div className={estilos.campo}>
-                            <input
-                                placeholder="Produto"
-                                type="text"
-                                {...registerRegistro("produto")}
-                            />
-                            {errorsRegistro.produto && (
+                            <label htmlFor="produto">Produto</label>
+
+                            <select {...register("produto", {valueAsNumber: true})}>
+                                <option disabled>
+                                    Selecione um produto
+                                </option>
+
+                                {produtos.map((p) => (
+                                    <option
+                                        key={p.codigo}
+                                        value={p.codigo}
+                                    >
+                                        {p.nome}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {errors.produto && (
                                 <p className={estilos.mensagem}>
-                                    {errorsRegistro.produto.message}
+                                    {errors.produto.message}
                                 </p>
                             )}
                         </div>
 
                         <div className={estilos.campo}>
-                            <input
-                                placeholder="Marca"
-                                type="text"
-                                {...registerRegistro("marca")}
-                            />
-                            {errorsRegistro.marca && (
-                                <p className={estilos.mensagem}>
-                                    {errorsRegistro.marca.message}
-                                </p>
-                            )}
-                        </div>
+                            <label htmlFor="quantidade">
+                                Quantidade
+                            </label>
 
-                        <div className={estilos.campo}>
                             <input
-                                placeholder="Código"
-                                type="text"
-                                {...registerRegistro("codigo")}
-                            />
-                            {errorsRegistro.codigo && (
-                                <p className={estilos.mensagem}>
-                                    {errorsRegistro.codigo.message}
-                                </p>
-                            )}
-                        </div>
-                        <div className={estilos.campo}>
-                            <input
+                                id="quantidade"
                                 placeholder="Quantidade"
-                                type="text"
-                                {...registerRegistro("quantidade")}
+                                type="number"
+                                {...register("quantidade", {
+                                    valueAsNumber: true,
+                                })}
                             />
-                            {errorsRegistro.quantidade && (
+
+                            {errors.quantidade && (
                                 <p className={estilos.mensagem}>
-                                    {errorsRegistro.quantidade.message}
-                                </p>
-                            )}
-                        </div>
-                        <div className={estilos.campo}>
-                            <input
-                                placeholder="Estoque"
-                                type="text"
-                                {...registerRegistro("estoque")}
-                            />
-                            {errorsRegistro.estoque && (
-                                <p className={estilos.mensagem}>
-                                    {errorsRegistro.estoque.message}
+                                    {errors.quantidade.message}
                                 </p>
                             )}
                         </div>
 
                         <div className={estilos.campo}>
+                            <label htmlFor="estoque">Data</label>
+
                             <input
-                                placeholder="Movimento"
-                                type="text"
-                                {...registerRegistro("entrasai")}
+                                id="estoque"
+                                type="date"
+                                {...register("data")}
                             />
-                            {errorsRegistro.entrasai && (
+
+                            {errors.data && (
                                 <p className={estilos.mensagem}>
-                                    {errorsRegistro.entrasai.message}
+                                    {errors.data.message}
                                 </p>
                             )}
                         </div>
 
-                        <button className={estilos.buttonEnviar}>Criar</button>
+                        <div className={estilos.campo}>
+                            <label htmlFor="entrasai">
+                                Entrada ou saída
+                            </label>
+
+                            <select {...register("entrasai")}>
+                                <option value="" disabled>
+                                    Selecionar
+                                </option>
+
+                                <option value="entrada">
+                                    Entrada
+                                </option>
+
+                                <option value="saida">
+                                    Saída
+                                </option>
+                            </select>
+
+                            {errors.entrasai && (
+                                <p className={estilos.mensagem}>
+                                    {errors.entrasai.message}
+                                </p>
+                            )}
+                        </div>
+
+                        <div className={estilos.campo}>
+                            <label
+                                htmlFor="preco"
+                                className={estilos.unitotLabel}
+                            >
+                                Preço
+                            </label>
+
+                            <p className={estilos.alerta}>
+                                *Esse campo é opcional e só deve ser
+                                preenchido caso o preço do produto seja
+                                diferente do cadastrado*
+                            </p>
+
+                            <input
+                                id="preco"
+                                placeholder="Preço"
+                                type="number"
+                                {...register("preco", {
+                                    setValueAs: (valor) => valor === "" ? undefined : Number(valor),
+                                })}
+                            />
+
+                            <select
+                                className={estilos.unitot}
+                                {...register("unitot")}
+                            >
+                                <option disabled>
+                                    Selecionar
+                                </option>
+
+                                <option value="uni">
+                                    Unidade
+                                </option>
+
+                                <option value="tot">
+                                    Total
+                                </option>
+                            </select>
+                        </div>
+
+                        <button
+                            type="submit"
+                            className={estilos.buttonEnviar}
+                        >
+                            Criar
+                        </button>
                     </div>
                 </form>
             </div>

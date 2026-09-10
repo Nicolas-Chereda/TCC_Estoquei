@@ -29,9 +29,7 @@
 }
 
 .card,
-.card1,
 .card2 {
-    min-height: 190px;
     padding: 1px;
     border-radius: 18px;
     background: linear-gradient(135deg, #ffd6ad, #ffb066);
@@ -43,50 +41,185 @@
 
 .card {
     grid-column: span 4;
-}
-
-.card1 {
-    grid-column: span 4;
+    min-height: 190px;
 }
 
 .card2 {
-    grid-column: span 12;
+    grid-column: span 8;
 }
 
 .card:hover,
-.card1:hover,
 .card2:hover {
     box-shadow: 0 15px 28px rgba(113, 59, 7, 0.18);
     transform: translateY(-3px);
 }
 
-.card__content {
-    display: flex;
-    width: 100%;
+.cardContent {
     height: 100%;
-    min-height: inherit;
-    padding: 24px;
+    padding: 22px 24px;
     border-radius: 17px;
     background: var(--cor-superficie);
-    align-items: center;
-    justify-content: center;
 }
 
-.texto_card {
+.cardContentTabela {
+    height: 100%;
+    border-radius: 17px;
+    background: var(--cor-superficie);
+    overflow: hidden;
+}
+
+.cardTitulo {
+    margin: 0 0 14px;
+    color: #6b3300;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.cardValor {
+    margin: 0 0 4px;
+    color: #1a0a00;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.cardSub {
+    margin: 0 0 14px;
+    color: #cc6300;
+    font-size: 0.78rem;
+}
+
+.lista {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    color: #6b3300;
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-align: center;
-    align-items: center;
+    gap: 10px;
 }
 
-.texto_card svg {
-    color: var(--cor-primaria);
-    font-size: 1.8em;
+.itemLista {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+
+.itemPendencia {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+
+.itemLabel {
+    color: #663100;
+}
+
+.itemValor {
+    color: #1a0a00;
+    font-weight: 600;
+}
+
+.badgeZerado {
+    background: #fdeaea;
+    color: #8b1f1f;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.badgeBaixo {
+    background: #fff2d6;
+    color: #7a4500;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.cabecalhoTabela {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid #fff0e0;
+}
+
+.tituloTabela {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a0a00;
+}
+
+.botaoNovo {
+    background: none;
+    border: 1px solid #ffd4a3;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.83rem;
+    color: #994a00;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.botaoNovo:hover {
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela thead tr {
+    background: #fff8f2;
+    border-bottom: 1px solid #ffe5cc;
+}
+
+.tabela th {
+    padding: 12px 24px;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #994a00;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tabela tbody tr {
+    border-bottom: 1px solid #fff0e0;
+}
+
+.tabela tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tabela td {
+    padding: 14px 24px;
+    font-size: 0.85rem;
+    color: #1a0a00;
+}
+
+.tdMutado {
+    color: #994a00 !important;
+}
+
+.botaoBaixar {
+    background: none;
+    border: 1px solid #ffd4a3;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    color: #994a00;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.botaoBaixar:hover {
+    background: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: var(--cor-superficie);
 }
 
 /* -------------- RESPONSIVIDADE ------------- */
@@ -95,9 +228,12 @@
         padding: 28px 24px;
     }
 
-    .card,
-    .card1 {
+    .card {
         grid-column: span 6;
+    }
+
+    .card2 {
+        grid-column: span 12;
     }
 }
 
@@ -113,9 +249,8 @@
     }
 
     .card,
-    .card1,
     .card2 {
         grid-column: auto;
-        min-height: 160px;
+        min-height: auto;
     }
 }

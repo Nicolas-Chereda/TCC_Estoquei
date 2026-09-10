@@ -1,6 +1,6 @@
 import styles from "./DetalheProduto.module.css";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProdutos } from "../../contexts/ProdutosContexto";
 
 // ─── Dados fictícios ──────────────────────────────────────────────────────────
@@ -53,43 +53,58 @@ const HISTORICO = [
     },
 ];
 
-
-
 // ─── Componente ───────────────────────────────────────────────────────────────
 
 export default function DetalheProduto() {
+    const navigate = useNavigate();
 
-    const { codigo } = useParams<{codigo: string}>();
+    const { codigo } = useParams<{ codigo: string }>();
     const { produtos } = useProdutos();
 
-    const produto = produtos.find((produto) => produto.codigo == Number(codigo));
+    const produto = produtos.find(
+        (produto) => produto.codigo == Number(codigo),
+    );
 
-    if (!produto) { return <h2>Produto não encontrado.</h2>; }
+    if (!produto) {
+        return <h2>Produto não encontrado.</h2>;
+    }
 
     const porcentagem = Math.min(
-        Math.round((produto.estoque / produto.qtdMin) * 100), // ---------------- TEM QUE CORRIGIR ISSO AQUI COLOCANDO A QUANTIDADE MÁXIMA
+        Math.round((produto.estoque / produto.qtdMax) * 100),
         100,
     );
+
     const margem = (
         ((produto.precoVenda - produto.precoCusto) / produto.precoVenda) *
         100
     ).toFixed(0);
+
+    const voltarParaLista = () => {
+        navigate("/principal/listaProdutos");
+    };
 
     return (
         <div className={styles.pagina}>
             {/* ── Topo ── */}
             <div className={styles.topo}>
                 <div className={styles.topoEsquerda}>
-                    <button className={styles.btnVoltar} aria-label="Voltar">
+                    <button
+                        className={styles.btnVoltar}
+                        aria-label="Voltar"
+                        onClick={voltarParaLista}
+                    >
                         ‹
                     </button>
+
                     <div className={styles.topoInfo}>
                         <h1>{produto.nome}</h1>
+
                         <p>
                             Cód: {produto.codigo} · {produto.categoria}
                         </p>
                     </div>
                 </div>
+
                 <div className={styles.topoAcoes}>
                     <button className={styles.btnPerigo}>
                         <svg
@@ -105,8 +120,10 @@ export default function DetalheProduto() {
                             <path d="M19 6l-1 14H6L5 6" />
                             <path d="M10 11v6M14 11v6" />
                         </svg>
+
                         Excluir
                     </button>
+
                     <button className={styles.btnSecundario}>
                         <svg
                             width="15"
@@ -120,8 +137,10 @@ export default function DetalheProduto() {
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                         </svg>
+
                         Editar
                     </button>
+
                     <button className={styles.btnPrimario}>
                         <svg
                             width="15"
@@ -132,8 +151,12 @@ export default function DetalheProduto() {
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                         >
-                            <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+                            <path
+                                d="M12 5v14M5 12h14"
+                                strokeLinecap="round"
+                            />
                         </svg>
+
                         Registrar movimentação
                     </button>
                 </div>
@@ -146,17 +169,19 @@ export default function DetalheProduto() {
                     {/* Identidade */}
                     <div className={styles.card}>
                         <div className={styles.produtoIdentidade}>
-                            
-                            <p className={styles.produtoNome}>{produto.nome}</p>
+                            <p className={styles.produtoNome}>
+                                {produto.nome}
+                            </p>
+
+                            <p className={styles.produtoCodigo}>
+                                {produto.marca}
+                            </p>
+
                             <p className={styles.produtoCodigo}>
                                 Cód: {produto.codigo}
                             </p>
-                            <span
-                                className={`${styles.statusBadge} ${styles.statusBaixo}`}
-                            >
-                                ● Estoque baixo
-                            </span>
                         </div>
+
                         <div
                             className={styles.cardCorpo}
                             style={{ paddingTop: 0 }}
@@ -165,16 +190,19 @@ export default function DetalheProduto() {
                                 <span className={styles.campoLabel}>
                                     Categoria
                                 </span>
+
                                 <span className={styles.campoValor}>
                                     {produto.categoria}
                                 </span>
                             </div>
+
                             <div className={styles.campoLinha}>
                                 <span className={styles.campoLabel}>
                                     Fornecedor
                                 </span>
+
                                 <span className={styles.campoValorMutado}>
-                                    Fornecedor
+                                    {produto.fornecedor}
                                 </span>
                             </div>
                         </div>
@@ -183,31 +211,45 @@ export default function DetalheProduto() {
                     {/* Preços */}
                     <div className={styles.card}>
                         <p className={styles.cardTitulo}>Preços</p>
+
                         <div className={styles.cardCorpo}>
                             <div className={styles.precosGrid}>
                                 <div className={styles.precoItem}>
-                                    <p className={styles.precoLabel}>Custo</p>
-                                    <p className={styles.precoValor}>
-                                        R$ {produto.precoCusto.toFixed(2)}
+                                    <p className={styles.precoLabel}>
+                                        Custo
                                     </p>
+
+                                    <p className={styles.precoValor}>
+                                        R${" "}
+                                        {produto.precoCusto.toFixed(2)}
+                                    </p>
+
                                     <p className={styles.precoSub}>
                                         preço de compra
                                     </p>
                                 </div>
+
                                 <div className={styles.precoItem}>
-                                    <p className={styles.precoLabel}>Venda</p>
-                                    <p className={styles.precoValor}>
-                                        R$ {produto.precoVenda.toFixed(2)}
+                                    <p className={styles.precoLabel}>
+                                        Venda
                                     </p>
+
+                                    <p className={styles.precoValor}>
+                                        R${" "}
+                                        {produto.precoVenda.toFixed(2)}
+                                    </p>
+
                                     <p className={styles.precoSub}>
                                         preço ao cliente
                                     </p>
                                 </div>
                             </div>
+
                             <div className={styles.margemDestaque}>
                                 <span className={styles.margemLabel}>
                                     Margem de lucro
                                 </span>
+
                                 <span className={styles.margemValor}>
                                     {margem}%
                                 </span>
@@ -220,52 +262,91 @@ export default function DetalheProduto() {
                 <div className={styles.colunaDireita}>
                     {/* Estoque */}
                     <div className={styles.card}>
-                        <p className={styles.cardTitulo}>Estoque atual</p>
+                        <p className={styles.cardTitulo}>
+                            Estoque atual
+                        </p>
+
                         <div className={styles.cardCorpo}>
                             <div className={styles.estoqueGrid}>
                                 <div className={styles.estoqueItem}>
-                                    <p className={styles.estoqueLabel}>Atual</p>
+                                    <p className={styles.estoqueLabel}>
+                                        Atual
+                                    </p>
+
                                     <p
                                         className={`${styles.estoqueValor} ${styles.estoqueValorBaixo}`}
                                     >
                                         {produto.estoque}
                                     </p>
+
                                     <p className={styles.estoqueSub}>
                                         unidades
                                     </p>
                                 </div>
+
                                 <div className={styles.estoqueItem}>
                                     <p className={styles.estoqueLabel}>
                                         Mínimo
                                     </p>
+
                                     <p className={styles.estoqueValor}>
                                         {produto.qtdMin}
                                     </p>
+
                                     <p className={styles.estoqueSub}>
                                         unidades
                                     </p>
                                 </div>
+
                                 <div className={styles.estoqueItem}>
                                     <p className={styles.estoqueLabel}>
                                         Máximo
                                     </p>
+
                                     <p className={styles.estoqueValor}>
-                                        *tem q adicionar*
+                                        {produto.qtdMax}
                                     </p>
+
                                     <p className={styles.estoqueSub}>
                                         unidades
                                     </p>
                                 </div>
                             </div>
+
+                            {/* Status + barra de progresso */}
                             <div className={styles.progressoWrap}>
+                                <div className={styles.statusEstoque}>
+                                    <span
+                                        className={`${styles.statusBadge} ${styles.statusBaixo}`}
+                                    >
+                                        {produto.status === "Esgotado" &&
+                                            "Estoque esgotado"}
+
+                                        {produto.status === "Baixo" &&
+                                            "Estoque baixo"}
+
+                                        {produto.status === "Normal" &&
+                                            "Estoque normal"}
+
+                                        {produto.status === "Cheio" &&
+                                            "Estoque cheio"}
+                                    </span>
+                                </div>
+
                                 <div className={styles.progressoLabel}>
                                     <span>Nível de estoque</span>
-                                    <span>{porcentagem}% do máximo</span>
+
+                                    <span>
+                                        {porcentagem}% do máximo
+                                    </span>
                                 </div>
+
                                 <div className={styles.progressoFundo}>
                                     <div
                                         className={`${styles.progressoBarra} ${styles.progressaBaixo}`}
-                                        style={{ width: `${porcentagem}%` }}
+                                        style={{
+                                            width: `${porcentagem}%`,
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -278,10 +359,12 @@ export default function DetalheProduto() {
                             <span className={styles.tabelaTitulo}>
                                 Histórico de movimentações
                             </span>
+
                             <button className={styles.btnVerTodos}>
                                 Ver todos
                             </button>
                         </div>
+
                         <table>
                             <thead>
                                 <tr>
@@ -293,6 +376,7 @@ export default function DetalheProduto() {
                                     <th>Saldo após</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 {HISTORICO.map((h) => (
                                     <tr key={h.id}>
@@ -307,12 +391,15 @@ export default function DetalheProduto() {
                                                 </span>
                                             ) : (
                                                 <span
-                                                    className={styles.tipoSaida}
+                                                    className={
+                                                        styles.tipoSaida
+                                                    }
                                                 >
                                                     ↑ Saída
                                                 </span>
                                             )}
                                         </td>
+
                                         <td>
                                             <span
                                                 className={
@@ -327,16 +414,34 @@ export default function DetalheProduto() {
                                                 {h.quantidade} un.
                                             </span>
                                         </td>
-                                        <td className={styles.tdMutado}>
+
+                                        <td
+                                            className={
+                                                styles.tdMutado
+                                            }
+                                        >
                                             {h.responsavel}
                                         </td>
-                                        <td className={styles.tdMutado}>
+
+                                        <td
+                                            className={
+                                                styles.tdMutado
+                                            }
+                                        >
                                             {h.data}
                                         </td>
-                                        <td className={styles.tdMutado}>
+
+                                        <td
+                                            className={
+                                                styles.tdMutado
+                                            }
+                                        >
                                             {h.hora}
                                         </td>
-                                        <td>{h.saldoApos} un.</td>
+
+                                        <td>
+                                            {h.saldoApos} un.
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

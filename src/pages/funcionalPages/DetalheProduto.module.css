@@ -304,8 +304,14 @@
     color: #cc6300;
 }
 
+.statusEstoque {
+    align-self: center;
+}
+
 .progressoWrap {
     margin-top: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .progressoLabel {

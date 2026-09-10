@@ -35,7 +35,7 @@ const Home = () => {
                     <h1>do Seu Empreendimento.</h1>
                     <p>Um bom negócio começa pelo gerencimento!</p>
 
-                    <button className={estilos.comecar}>Começar Agora!</button>
+                    <button onClick={IrParaLogin} className={estilos.comecar}>Começar Agora!</button>
                 </div>
 
                 <div className={estilos.imagem}>
@@ -52,8 +52,7 @@ const Home = () => {
                     </div>
 
                     <div className={estilos.textoSobreNos}>
-                        <h1 className={estilos.titulo1}>Olá, </h1>
-                        <h1 className={estilos.titulo2}>Somos a Estoquei!</h1>
+                        <h1 className={estilos.titulo1}>Olá, Somos a Estoquei! </h1>
                         <h3>
                             Um projeto de TCC da Etec Hortolândia criado para
                             facilitar o gerenciamento de micro-empresas.
@@ -93,12 +92,9 @@ const Home = () => {
                             </div>
 
                             <p className={estilos.textoCard}>
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Eveniet, enim facilis velit
-                                suscipit expedita dicta sint voluptas, ab
-                                perspiciatis, itaque obcaecati cum amet?
-                                Nesciunt dolore itaque ratione, ex voluptatibus
-                                suscipit?
+                                Tenha total controle do seu estoque em um só lugar. 
+                                Cadastre produtos, registre entradas e saídas e acompanhe
+                                 o saldo em tempo real, sem precisar de planilhas ou anotações em papel.
                             </p>
                         </div>
 
@@ -109,12 +105,8 @@ const Home = () => {
                             </div>
 
                             <p className={estilos.textoCard}>
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Eveniet, enim facilis velit
-                                suscipit expedita dicta sint voluptas, ab
-                                perspiciatis, itaque obcaecati cum amet?
-                                Nesciunt dolore itaque ratione, ex voluptatibus
-                                suscipit?
+                                Acesse o sistema sem pagar nada. Nossa plataforma foi criada para pequenos
+                                 empresários que precisam de uma solução simples e acessível para organizar o negócio sem custo inicial.
                             </p>
                         </div>
 
@@ -125,12 +117,9 @@ const Home = () => {
                             </div>
 
                             <p className={estilos.textoCard}>
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Eveniet, enim facilis velit
-                                suscipit expedita dicta sint voluptas, ab
-                                perspiciatis, itaque obcaecati cum amet?
-                                Nesciunt dolore itaque ratione, ex voluptatibus
-                                suscipit?
+                               Desenvolvido para quem não tem tanta experiência com tecnologia.
+                                De forma rápida e simples você adiciona produtos, registra movimentações
+                                 e recebe alertas automáticos quando o estoque estiver baixo.
                             </p>
                         </div>
                     </div>

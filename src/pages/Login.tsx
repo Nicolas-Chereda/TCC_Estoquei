@@ -31,7 +31,8 @@ const registroSchema = z.object({
     email: z.email({ message: "Informe um e-mail válido." }),
     senha: z
         .string()
-        .length(6, { message: "Informe uma senha com 6 caracteres." }),
+        .min(4, "Mínimo de 4 caracteres.")
+        .max(25, "Máximo de 25 caracteres")
 });
 
 const loginSchema = z.object({
