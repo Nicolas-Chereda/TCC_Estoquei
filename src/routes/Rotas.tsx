@@ -17,7 +17,7 @@ import SobreNos from "../pages/funcionalPages/SobreNos";
 
 const Rotas = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/TCC_Estoquei">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
